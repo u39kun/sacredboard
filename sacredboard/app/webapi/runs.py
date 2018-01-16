@@ -88,8 +88,32 @@ def get_runs():
     # not what was returned
     records_total = runs.count()
     records_filtered = runs.count()
+
+    # runs is a filtered set based on the query specified
+    # get metrics for these runs
+    metrics_dao = data.get_metrics_dao()
+    runs_with_metrics = []
+    for run in runs:
+        if 'metrics' in run['info']:
+            run_metrics = run['info']['metrics']
+            for run_metric in run_metrics:
+                #metric_id = run_metric['id']
+                #print(run_metric['id'])
+                #print(run_metric['name'])
+                if run_metric['name'] == 'val.loss':
+                    metric = metrics_dao.get(run['_id'], run_metric['id'])
+                    best_val_loss, best_epoch = sorted(zip(metric['values'], metric['steps']))[0]
+                    run['config']['best_val_loss'] = best_val_loss
+                    run['config']['best_epoch'] = best_epoch
+                elif run_metric['name'] == 'train.loss':
+                    metric = metrics_dao.get(run['_id'], run_metric['id'])
+                    best_train_loss, best_epoch = sorted(zip(metric['values'], metric['steps']))[0]
+                    run['config']['best_train_loss'] = best_train_loss
+
+        runs_with_metrics.append(run)
+
     return Response(render_template(
-        "api/runs.js", runs=runs,
+        "api/runs.js", runs=runs_with_metrics,
         draw=draw, recordsTotal=records_total,
         recordsFiltered=records_filtered),
         mimetype="application/json")

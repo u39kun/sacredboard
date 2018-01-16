@@ -29,6 +29,13 @@ def timediff(time):
     diff_sec = diff.total_seconds()
     return diff_sec
 
+@filters.app_template_filter("duration")
+def duration(datetimes):
+    """Return the difference in seconds between now and the given time."""
+    diff = datetimes[1] - datetimes[0]
+    diff_h = diff // datetime.timedelta(hours=1)
+    diff_m = (diff - diff_h * datetime.timedelta(hours=1)) // datetime.timedelta(minutes=1)
+    return '{:02d}:{:02d}'.format(diff_h, diff_m)
 
 @filters.app_template_filter("last_line")
 def last_line(text):
@@ -73,6 +80,15 @@ def detect_alive_experiment(time_difference):
     """Decide whether experiment is alive or not."""
     return time_difference < 120
 
+@filters.app_template_filter("tofloat")
+def tofloat(obj):
+    """Convert object to string."""
+    print(type(obj))
+    try:
+        number = float(obj)
+    except:
+        number = 0.
+    return '{0:.4f}'.format(number)
 
 def initialize(app, app_config):
     """Register the filters in a Flask application."""

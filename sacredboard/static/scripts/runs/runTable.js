@@ -101,10 +101,21 @@ define(["bootstrap", "datatable", "datatables-bootstrap", "runs/detailView/compo
                         }
                     },
                     {"data": "command", "name": "command"},
+                    {"data": "lr", "name": "lr"},
+                    {"data": "epochs_per_lr_drop", "name": "epochs_per_lr_drop"},
+                    {"data": "optimizer_name", "name": "optimizer_name"},
+                    {"data": "augmented", "name": "augmented"},
+                    {"data": "batch_norm", "name": "batch_norm"},
+                    {"data": "relu_after_conv", "name": "relu_after_conv"},
+                    {"data": "model_config", "name": "model_config"},
+                    {"data": "best_val_loss", "name": "best_val_loss"},
+                    {"data": "best_epoch", "name": "best_epoch"},
                     {"data": "start_time", "name": "start_time"},
                     {"data": "heartbeat", "name": "heartbeat"},
+                    {"data": "duration", "name": "duration"},
                     {"data": "hostname", "name": "hostname"},
-                    {"data": "result", "name": "result"}
+                    {"data": "result", "name": "result"},
+                    {"data": "comment", "name": "comment"}
                 ],
                 /**
                  * Sort by experiment heartbeat
