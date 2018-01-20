@@ -15,6 +15,7 @@
         "epochs_per_lr_drop": {{run.config.epochs_per_lr_drop | default | tofloat}},
         "optimizer_name": {{run.config.optimizer_name | default | tojson}},
         "augmented": {{run.config.augmented | default | tojson}},
+        "rotate": {{run.config.rotate | default | tojson}},
         "batch_norm": {{run.config.batch_norm | default | tojson}},
         "relu_after_conv": {{run.config.relu_after_conv| default | tojson}},
         "model_config": {{run.config.model_config| default | tojson}},

@@ -105,6 +105,7 @@ define(["bootstrap", "datatable", "datatables-bootstrap", "runs/detailView/compo
                     {"data": "epochs_per_lr_drop", "name": "epochs_per_lr_drop"},
                     {"data": "optimizer_name", "name": "optimizer_name"},
                     {"data": "augmented", "name": "augmented"},
+                    {"data": "rotate", "name": "rotate"},
                     {"data": "batch_norm", "name": "batch_norm"},
                     {"data": "relu_after_conv", "name": "relu_after_conv"},
                     {"data": "model_config", "name": "model_config"},
